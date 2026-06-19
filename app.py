@@ -9,7 +9,7 @@ from src.vector_store import build_or_load_vector_store
 from src.rag_chain import build_rag_chain, build_comparison_chain, format_docs
 from src.utils import SUGGESTED_QUESTIONS, export_chat_to_text, format_sources
 
-st.set_page_config(page_title="Research Paper Chatbot", page_icon="📄", layout="wide")
+st.set_page_config(page_title="Research Paper Chatbot",page_icon="📄",layout="wide")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # SESSION STATE
@@ -39,13 +39,13 @@ if not GROQ_API_KEY:
 st.sidebar.markdown("---")
 st.sidebar.subheader("1. Upload Papers")
 
-uploaded_files = st.sidebar.file_uploader(
+uploaded_files=st.sidebar.file_uploader(
     "Upload one or more PDFs",
     type=["pdf"],
     accept_multiple_files=True,
 )
 
-build_btn = st.sidebar.button("🔨 Build Knowledge Base", type="primary", use_container_width=True)
+build_btn=st.sidebar.button("🔨 Build Knowledge Base", type="primary", use_container_width=True)
 
 if uploaded_files:
     st.sidebar.markdown("**Uploaded:**")
@@ -59,14 +59,14 @@ if build_btn:
         st.stop()
 
     # Save uploaded files to disk
-    file_paths = []
+    file_paths=[]
     for f in uploaded_files:
-        path = os.path.join(UPLOAD_DIR, f.name)
+        path=os.path.join(UPLOAD_DIR, f.name)
         with open(path, "wb") as out:
             out.write(f.read())
         file_paths.append(path)
 
-    cache_key = get_combined_hash(file_paths)
+    cache_key=get_combined_hash(file_paths)
 
     with st.spinner("📖 Reading PDFs..."):
         result = load_pdfs(file_paths)
@@ -88,12 +88,12 @@ if build_btn:
         retrieve_docs, streaming_chain = build_rag_chain(vector_store)
 
     # Save to session state
-    st.session_state.processed = True
-    st.session_state.retrieve_docs = retrieve_docs
-    st.session_state.streaming_chain = streaming_chain
-    st.session_state.vector_store = vector_store
-    st.session_state.filenames = result["filenames"]
-    st.session_state.chat_history = []
+    st.session_state.processed=True
+    st.session_state.retrieve_docs=retrieve_docs
+    st.session_state.streaming_chain=streaming_chain
+    st.session_state.vector_store=vector_store
+    st.session_state.filenames=result["filenames"]
+    st.session_state.chat_history=[]
 
     st.sidebar.success(
         f"✅ Ready! {len(chunks)} chunks indexed from {len(result['filenames'])} paper(s)."
