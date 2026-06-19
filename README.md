@@ -2,7 +2,7 @@
 
 A Retrieval-Augmented Generation (RAG) powered chatbot that lets you upload research papers and have a grounded, citation-backed conversation with them — instead of reading 30 pages to find one answer.
 
-**🔗 Live Demo:** [https://research-paper-chatbot-genai.streamlit.app/](#) *(replace with your deployed link)*
+**🔗 Live Demo:** [research-paper-chatbot-genai.streamlit.app](https://research-paper-chatbot-genai.streamlit.app/)
 
 ---
 
